@@ -1,0 +1,24 @@
+# Dependencias
+node_modules/
+
+# Variables de entorno (NUNCA subir al repo)
+.env
+
+# Logs
+logs/
+*.log
+
+# Docker
+.dockerignore
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Testing
+coverage/
+logs/errors.log
