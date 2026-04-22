@@ -40,3 +40,4 @@ Vulnerabilidades reportadas corresponden exclusivamente a devDependencies
 
 ## 📚 Swagger
 Disponible en: http://localhost:8080/api/docs
+# adoptme
