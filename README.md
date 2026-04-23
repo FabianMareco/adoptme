@@ -27,7 +27,7 @@ npm run dev
 docker build -t adoptme .
 docker run -p 8080:8080 adoptme
 ```
-**DockerHub:** (link a completar en Módulo 5)
+**DockerHub:** https://hub.docker.com/r/fabianmareco/adoptme
 
 ## 🧪 Testing
 ```bash
