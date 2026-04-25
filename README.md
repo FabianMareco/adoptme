@@ -26,6 +26,9 @@ npm run dev
 ```bash
 docker build -t adoptme .
 docker run -p 8080:8080 adoptme
+
+## 🚀 Deploy
+- Railway: https://adoptme-production-1739.up.railway.app
 ```
 **DockerHub:** https://hub.docker.com/r/fabianmareco/adoptme
 
@@ -39,6 +42,5 @@ Vulnerabilidades reportadas corresponden exclusivamente a devDependencies
 (mocha, bcrypt build tools) y no afectan el runtime de producción.
 
 ## 📚 Swagger
-Disponible en: http://localhost:8080/api/docs
-# adoptme
-# adoptme
+- Local: http://localhost:8080/api/docs
+- Producción: https://adoptme-production-1739.up.railway.app/api/docs
