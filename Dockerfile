@@ -15,4 +15,4 @@ EXPOSE 8080
 ENV NODE_ENV=production
 ENV PORT=8080
 
-CMD ["node", "--experimental-vm-modules", "src/app.js"]
+CMD ["node", "src/app.js"]
