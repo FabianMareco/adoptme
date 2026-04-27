@@ -18,8 +18,14 @@ const swaggerOptions = {
             }
         },
         servers: [
-            { url: 'http://localhost:8080', description: 'Development server' },
-            { url: 'https://adoptme-production.railway.app', description: 'Production server' }
+            { 
+                url: 'https://adoptme-production-1739.up.railway.app', 
+                description: 'Production server (Railway)' 
+            },
+            { 
+                url: 'http://localhost:8080', 
+                description: 'Development server' 
+            }
         ],
         components: {
             schemas: {
@@ -69,18 +75,10 @@ const swaggerOptions = {
                         status:  { type: 'string', example: 'error' },
                         message: { type: 'string', example: 'Resource not found' }
                     }
-                },
-                Success: {
-                    type: 'object',
-                    properties: {
-                        status:  { type: 'string', example: 'success' },
-                        payload: { type: 'object' }
-                    }
                 }
             }
         }
     },
-    // Rutas donde Swagger busca los comentarios JSDoc
     apis: [
         path.join(__dirname, '../routes/*.router.js'),
         path.join(__dirname, '../routes/*.js')
@@ -90,12 +88,14 @@ const swaggerOptions = {
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
 export const setupSwagger = (app) => {
-    // UI interactiva
     app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
         customCss: '.swagger-ui .topbar { background-color: #e74c3c; }',
-        customSiteTitle: 'AdoptMe API Docs'
+        customSiteTitle: 'AdoptMe API Docs',
+        swaggerOptions: {
+            url: '/api/docs.json',
+            persistAuthorization: true
+        }
     }));
-    // JSON spec (útil para importar en Postman)
     app.get('/api/docs.json', (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.send(swaggerSpec);
