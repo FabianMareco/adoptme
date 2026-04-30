@@ -1,14 +1,3 @@
-
-// src/middleware/error.middleware.js
-
-/**
- * ¿Por qué un diccionario de errores?
- * 1. Consistencia: todos los errores tienen el mismo formato
- * 2. Internacionalización: fácil de traducir
- * 3. Códigos internos: el cliente puede manejarlos programáticamente
- * 4. Seguridad: no exponemos stack traces en producción
- */
-
 export const EErrors = {
     // Errores de Usuario
     INVALID_TYPES_ERROR: 1,
@@ -101,10 +90,6 @@ export class CustomError extends Error {
 
 /**
  * Middleware de manejo de errores de Express
- * 
- * ¿Por qué 4 parámetros (err, req, res, next)?
- * Express detecta automáticamente que es un error middleware
- * por la firma de 4 argumentos. SIEMPRE debe tener los 4.
  */
 export const errorHandler = (err, req, res, next) => {
     // Si es nuestro error customizado

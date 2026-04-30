@@ -1,18 +1,10 @@
-// src/routes/mocks.router.js
 import { Router } from 'express';
 import { generateMockPets } from '../mocks/pets.mock.js';
 import { generateMockUsers } from '../mocks/users.mock.js';
 
 const router = Router();
 
-/**
- * GET /api/mocks/mockingpets
- * 
- * ¿Por qué query param en lugar de ruta dinámica?
- * /mockingpets?amount=100  → más RESTful para filtros/cantidades
- * /mockingpets/100         → ruta dinámica (mejor para IDs de recursos)
- * La consigna pide 100 por defecto, pero hacerlo configurable es buena práctica.
- */
+
 router.get('/mockingpets', (req, res) => {
     try {
         const amount = parseInt(req.query.amount) || 100;
@@ -71,21 +63,19 @@ router.get('/mockingusers', async (req, res) => {
  * POST /api/mocks/generateData
  * 
  * BONUS: Endpoint que genera E inserta en la BD real
- * Muy útil para poblar la BD de desarrollo en segundos
  */
 router.post('/generateData', async (req, res) => {
     try {
         const { users = 0, pets = 0 } = req.body;
         
-        // Importamos los modelos de Mongoose solo cuando se necesitan
+        // Importa los modelos de Mongoose solo cuando se necesitan
         const { default: UserModel } = await import('../dao/models/User.js');
         const { default: PetModel } = await import('../dao/models/Pet.js');
         
         const mockUsers = await generateMockUsers(users);
         const mockPets = generateMockPets(pets);
         
-        // insertMany es más eficiente que múltiples save()
-        // porque hace UNA sola operación en MongoDB
+      
         const insertedUsers = await UserModel.insertMany(mockUsers);
         const insertedPets = await PetModel.insertMany(mockPets);
         

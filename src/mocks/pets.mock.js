@@ -1,20 +1,14 @@
-// src/mocks/pets.mock.js
 import { faker } from '@faker-js/faker';
 
-/**
- * ¿Por qué esta función?
- * Genera mascotas con el mismo "shape" (forma/estructura)
- * que devolvería un documento de MongoDB, incluyendo _id.
- * Esto es crucial: los tests y el frontend esperan esa estructura.
- */
+
 const generateMockPet = () => {
     const species = faker.helpers.arrayElement(['dog', 'cat', 'rabbit', 'bird', 'hamster']);
     
     return {
-        _id: faker.database.mongodbObjectId(),    // Simulamos el _id de Mongo
+        _id: faker.database.mongodbObjectId(),    // Simula el _id de Mongo
         name: faker.animal[species]               // Nombre del animal según especie
             ? faker.animal[species]()             // Si faker tiene nombres para esa especie
-            : faker.person.firstName(),           // Si no, usamos nombre de persona
+            : faker.person.firstName(),           // Si no, se usa el nombre de persona
         specie: species,
         birthDate: faker.date.past({ years: 10 }),
         adopted: false,                           // Consigna: siempre false
